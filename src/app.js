@@ -14,6 +14,10 @@ function showSearchResult() {
   function showWeatherCondition(response) {
     let temperatureFigure = document.querySelector("#temp");
     temperatureFigure.innerHTML = Math.round(response.data.main.temp);
+    let descriptionElement = document.querySelector("#description");
+    let weatherDesc = response.data.weather[0].description;
+    let capitalized = weatherDesc[0].toUpperCase() + weatherDesc.slice(1);
+    descriptionElement.innerHTML = capitalized;
   }
 }
 
