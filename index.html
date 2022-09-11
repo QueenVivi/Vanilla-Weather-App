@@ -15,37 +15,44 @@
   </head>
   <body>
     <div class="container">
-      <div class = "border">
-      <div class = "weather-app">
-        <h1>Melbourne</h1>
-        <ul>
-          <li>Saturday 16:00</li>
-          <li>cloudy</li>
-        </ul>
-        <div class="container">
-          <div class="row">
-            <div class="col-6">
-              <img
-              src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-              alt="cloudy />" 
-              <h2>14°C °F</h2>
-            </div>
-            <div class="col-6">
-              <ul>
-                <li>Precipitation: 0%</li>
-                <li>Humidity: 54%</li>
-                <li>Wind: 19 mph</li>
-              </ul>
+      <div class="wrapper">
+        <div class="weather-app">
+          <h1>Melbourne</h1>
+          <ul>
+            <li>Saturday 16:00</li>
+            <li>cloudy</li>
+          </ul>
+          <div class="container">
+            <div class="row">
+              <div class="col-6 indicator">
+                <img
+                  src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+                  alt="cloudy"
+                />
+                <div class="weather-app-temp">
+                  <strong>14</strong>
+                  <a href="#">°C</a>
+                  <span> | </span>
+                  <a href="#">°F</a>
+                </div>
+              </div>
+              <div class="col-6">
+                <ul>
+                  <li>Precipitation: 0%</li>
+                  <li>Humidity: 54%</li>
+                  <li>Wind: 19 mph</li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-        <small>
-          <a href="https://github.com/QueenVivi/Vanilla-Weather-App"
-            >Open-source code</a
-          >
-          by Vivian Xu
-        </small>
       </div>
+      <small>
+        <a href="https://github.com/QueenVivi/Vanilla-Weather-App"
+          >Open-source code</a
+        >
+        by Vivian Xu
+      </small>
     </div>
     <script src="src/app.js"></script>
   </body>
