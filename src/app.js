@@ -18,6 +18,10 @@ function showSearchResult() {
     let weatherDesc = response.data.weather[0].description;
     let capitalized = weatherDesc[0].toUpperCase() + weatherDesc.slice(1);
     descriptionElement.innerHTML = capitalized;
+    let humidityElement = document.querySelector("#humidity");
+    humidityElement.innerHTML = response.data.main.humidity;
+    let windElement = document.querySelector("#wind");
+    windElement.innerHTML = response.data.wind.speed;
   }
 }
 
