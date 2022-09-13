@@ -1,5 +1,54 @@
 let searchForm = document.querySelector("#search-form");
 
+function formatDate(timestamp, timezone) {
+  let time = new Date(timestamp + timezone);
+  let hours = time.getUTCHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = time.getUTCMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+
+  let day = time.getUTCDay();
+  let weekDays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let weekDay = weekDays[day];
+
+  return `Last updated at ${weekDay}, ${hours}:${minutes}.`;
+}
+
+function showWeatherCondition(response) {
+  let temperatureFigure = document.querySelector("#temp");
+  temperatureFigure.innerHTML = Math.round(response.data.main.temp);
+  let descriptionElement = document.querySelector("#description");
+  let weatherDesc = response.data.weather[0].description;
+  let capitalized = weatherDesc[0].toUpperCase() + weatherDesc.slice(1);
+  descriptionElement.innerHTML = capitalized;
+  let humidityElement = document.querySelector("#humidity");
+  humidityElement.innerHTML = response.data.main.humidity;
+  let windElement = document.querySelector("#wind");
+  windElement.innerHTML = response.data.wind.speed;
+  let localTime = document.querySelector("#local-time");
+  localTime.innerHTML = formatDate(
+    response.data.dt * 1000,
+    response.data.timezone * 1000
+  );
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`
+  );
+}
+
 function showSearchResult() {
   let searchInput = document.querySelector("#search-input");
   let placeName = document.querySelector("h1");
@@ -8,52 +57,6 @@ function showSearchResult() {
   let city = searchInput.value;
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeatherCondition);
-  function showWeatherCondition(response) {
-    let temperatureFigure = document.querySelector("#temp");
-    temperatureFigure.innerHTML = Math.round(response.data.main.temp);
-    let descriptionElement = document.querySelector("#description");
-    let weatherDesc = response.data.weather[0].description;
-    let capitalized = weatherDesc[0].toUpperCase() + weatherDesc.slice(1);
-    descriptionElement.innerHTML = capitalized;
-    let humidityElement = document.querySelector("#humidity");
-    humidityElement.innerHTML = response.data.main.humidity;
-    let windElement = document.querySelector("#wind");
-    windElement.innerHTML = response.data.wind.speed;
-    let localTime = document.querySelector("#local-time");
-    localTime.innerHTML = formatDate(
-      response.data.dt * 1000,
-      response.data.timezone * 1000
-    );
-
-    console.log(response.data);
-
-    function formatDate(timestamp, timezone) {
-      let time = new Date(timestamp + timezone);
-      let hours = time.getUTCHours();
-      console.log(hours);
-      if (hours < 10) {
-        hours = `0${hours}`;
-      }
-      let minutes = time.getUTCMinutes();
-      if (minutes < 10) {
-        minutes = `0${minutes}`;
-      }
-
-      let day = time.getUTCDay();
-      let weekDays = [
-        "Sunday",
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-      ];
-      let weekDay = weekDays[day];
-
-      return `Last updated at ${weekDay}, ${hours}:${minutes}.`;
-    }
-  }
 }
 
 searchForm.addEventListener("submit", showSearchResult);
