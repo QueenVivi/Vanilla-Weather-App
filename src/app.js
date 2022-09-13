@@ -47,6 +47,24 @@ function showWeatherCondition(response) {
     "src",
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}.png`
   );
+
+  let celsiusElement = document.querySelector("#celsius");
+  let farenheitElement = document.querySelector("#farenheit");
+  farenheitElement.addEventListener("click", convert);
+  function convert() {
+    temperatureFigure.innerHTML = Math.round(
+      (response.data.main.temp * 9) / 5 + 32
+    );
+    celsiusElement.classList.remove("active");
+    farenheitElement.classList.add("active");
+  }
+
+  celsiusElement.addEventListener("click", convertC);
+  function convertC() {
+    temperatureFigure.innerHTML = Math.round(response.data.main.temp);
+    celsiusElement.classList.add("active");
+    farenheitElement.classList.remove("active");
+  }
 }
 
 function showSearchResult(event) {
