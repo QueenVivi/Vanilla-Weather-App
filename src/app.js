@@ -49,7 +49,8 @@ function showWeatherCondition(response) {
   );
 }
 
-function showSearchResult() {
+function showSearchResult(event) {
+  event.preventDefault();
   let searchInput = document.querySelector("#search-input");
   let placeName = document.querySelector("h1");
   placeName.innerHTML = searchInput.value;
