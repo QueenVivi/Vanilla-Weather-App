@@ -79,3 +79,24 @@ function showSearchResult(event) {
 }
 
 searchForm.addEventListener("submit", showSearchResult);
+
+let forecastElement = document.querySelector(".forecast");
+
+forecastHTML = `<div class = "row">`;
+forecastHTML =
+  forecastHTML +
+  `<div class="col-2">
+<div class="forecast-date">Wed</div>
+<img
+src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
+width="40px"
+/>
+<div class="forecast-temp">
+<p>
+<span class="forecase-temp-max"> 18° </span>
+<span class="forecast-temp-min"> 12°</span>
+</p>
+</div>
+</div>`;
+forecastHTML = forecastHTML + `</div>`;
+forecastElement.innerHTML = forecastHTML;

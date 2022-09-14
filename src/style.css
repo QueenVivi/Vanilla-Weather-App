@@ -82,3 +82,21 @@ small a {
 .overview {
   margin-top: 20px;
 }
+
+.forecast {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.forecast-date {
+  size: 16px;
+  opacity: 0.5;
+}
+
+.forecast-temp {
+  size: 13px;
+}
+
+.forecast-temp-min {
+  opacity: 0.5;
+}
