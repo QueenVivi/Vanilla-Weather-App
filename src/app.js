@@ -65,6 +65,15 @@ function showWeatherCondition(response) {
     celsiusElement.classList.add("active");
     farenheitElement.classList.remove("active");
   }
+  getForecast(response.data.coord);
+}
+
+function getForecast(coords) {
+  let lat = coords.lat;
+  let lon = coords.lon;
+  let apiKey = "a43564c91a6c605aeb564c9ed02e3858";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  console.log(apiUrl);
 }
 
 function showSearchResult(event) {
